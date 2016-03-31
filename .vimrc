@@ -41,19 +41,19 @@ nmap <c-j> <c-w>j
 nmap <c-k> <c-w>k
 nmap <c-l> <c-w>l
 
-" ctags设置, F5刷新
+" ctags
 map <F5> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
 set tags=tags;
 set autochdir
 
-" 修改文件自动备份      
+"  auto backup     
 "if has("vms")  
 "    set nobackup  
 "else  
 "    set backup  
 "endif 
 
-" 自动加载cscope文件
+" auto load cscope files
 if has("cscope")
   set csprg=/usr/bin/cscope
   set csto=1
@@ -68,7 +68,7 @@ endif
 nmap <C-c> :cs find c <C-R>=expand("<cword>")<CR><CR>
 
 """"""""""""Plugins""""""""""""""
-"Vundle
+" Vundle
 filetype off 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -85,25 +85,24 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'uguu-org/vim-matrix-screensaver'
 call vundle#end()
-" filetype plugin indent on
 filetype indent on
 
-"NERDTree
+" NERDTree
 nmap <F9> :NERDTreeToggle<CR>
-"set mouse=a
+" set mouse=a
 
-"Tagbar
+" Tagbar
 nmap <F8> :TagbarToggle<CR>
 
-"vim-scala
+" vim-scala
 let g:scala_sort_across_groups=1
 
-"ultisnips
+" ultisnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
-"ycm
+" ycm
 let mapleader=','
 let g:ycm_show_diagnostics_ui=0
 let g:ycm_key_list_select_completion=[]
