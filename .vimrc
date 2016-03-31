@@ -1,55 +1,37 @@
-"显示行号
 set nu
-"映射F5显示行号
-"map <F5> <Esc>:set nu<CR>
-"映射Ctrl+F5为不显示行号
-"map <C-F5> <Esc>:set nonu<CR>
-
-"语法高亮
+set nocompatible
+set incsearch
+set hlsearch
+set ruler
+set showmode
 syntax on
 
-"去掉讨厌的有关vi一致性模式
-set nocompatible
-
-"tab 为4个空格
+" auto indent 2 space
 set tabstop=2
-
-"当前行之间交错时使用4个空格
 set shiftwidth=2
-
-"用空格代替制表符
+set softtabstop=2
 set expandtab
-
-"自动对齐
 set autoindent
 set cindent
-
-"智能选择对齐方式
 set smartindent
+set smarttab
 
-"匹配括号高亮的时间（单位是十分之一秒）
+" match parentheses
+set mps+=<:>
+set showmatch
 set matchtime=1
 
-"高亮查询
-set hlsearch
+" auto parentheses
+imap () ()<ESC>i
+imap {} {}<ESC>i
+imap [] []<ESC>i
+imap <> <><ESC>i
+imap "" ""<ESC>i
+imap '' ''<ESC>i
+imap <F3> <ESC>la
 
-"编辑时显示光标状态
-set ruler
 
-"显示vim当前模式
-set showmode
-
-"快速匹配
-set incsearch
-
-"修改文件自动备份      
-"if has("vms")  
-"    set nobackup  
-"else  
-"    set backup  
-"endif
-
-"映射窗口调整快捷键
+" map windows shift
 nmap > <c-w>>
 nmap < <c-w><
 nmap + <c-w>+
@@ -59,12 +41,19 @@ nmap <c-j> <c-w>j
 nmap <c-k> <c-w>k
 nmap <c-l> <c-w>l
 
-"ctags设置
-map <F4> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
+" ctags设置, F5刷新
+map <F5> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
 set tags=tags;
 set autochdir
 
-"cscope设置
+" 修改文件自动备份      
+"if has("vms")  
+"    set nobackup  
+"else  
+"    set backup  
+"endif 
+
+" 自动加载cscope文件
 if has("cscope")
   set csprg=/usr/bin/cscope
   set csto=1
@@ -76,37 +65,51 @@ if has("cscope")
   endif
   set csverb
 endif
+nmap <C-c> :cs find c <C-R>=expand("<cword>")<CR><CR>
 
-nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-
-""""""""""""插件设置""""""""""""""
-"pathogen
-runtime bundle/pathogen/autoload/pathogen.vim
-call pathogen#infect()
-Helptags
-filetype plugin indent on
+""""""""""""Plugins""""""""""""""
+"Vundle
+filetype off 
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'majutsushi/tagbar'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'dkprice/vim-easygrep'
+Plugin 'kien/ctrlp.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'uguu-org/vim-matrix-screensaver'
+call vundle#end()
+" filetype plugin indent on
+filetype indent on
 
 "NERDTree
 nmap <F9> :NERDTreeToggle<CR>
-" set mouse=a
+"set mouse=a
 
 "Tagbar
 nmap <F8> :TagbarToggle<CR>
 
-"neocomplcache
-let g:neocomplcache_enable_at_startup=1
-let g:neocomplcache_min_syntax_length=3
-
-"Omnicppcomplete
-set nocp
-
 "vim-scala
 let g:scala_sort_across_groups=1
 
+"ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+
+"ycm
+let mapleader=','
+let g:ycm_show_diagnostics_ui=0
+let g:ycm_key_list_select_completion=[]
+let g:ycm_key_list_previous_completion=[]
+let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
+let g:ycm_error_symbol='>>'
+let g:ycm_warning_symbol='>*'
+nmap <F4> :YcmDiags<CR>
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
