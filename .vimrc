@@ -4,17 +4,16 @@ set incsearch
 set hlsearch
 set ruler
 set showmode
-syntax on
+syntax enable
 
 " auto indent 2 space
+set autoindent
+set cindent
+set expandtab
+set smarttab
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set expandtab
-set autoindent
-set cindent
-set smartindent
-set smarttab
 
 " match parentheses
 set mps+=<:>
