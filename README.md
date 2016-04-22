@@ -1,4 +1,6 @@
 my-vim
 ======
 
-my vim configuration
+My vim configuration
+
+To install from command line: vim +PluginInstall +qall
