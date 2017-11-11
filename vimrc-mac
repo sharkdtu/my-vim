@@ -23,6 +23,8 @@ set matchtime=1
 " set backspace
 set backspace=indent,eol,start
 
+" set mouse=a
+
 " auto parentheses
 imap () ()<ESC>i
 imap {} {}<ESC>i
@@ -91,7 +93,6 @@ filetype indent on
 
 " NERDTree
 nmap <F9> :NERDTreeToggle<CR>
-" set mouse=a
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
@@ -119,3 +120,7 @@ nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " solarized theme
 set background=dark
 colorscheme solarized
+
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
