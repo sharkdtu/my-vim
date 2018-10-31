@@ -4,6 +4,8 @@ set incsearch
 set hlsearch
 set ruler
 set showmode
+set backspace=indent,eol,start
+set encoding=utf-8
 syntax enable
 
 highlight RedundantSpaces ctermbg=red guibg=red
@@ -35,7 +37,6 @@ imap "" ""<ESC>i
 imap '' ''<ESC>i
 imap <F3> <ESC>la
 
-
 " map windows shift
 nmap > <c-w>>
 nmap < <c-w><
@@ -50,13 +51,6 @@ nmap <c-l> <c-w>l
 map <F5> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
 set tags=tags;
 set autochdir
-
-"  auto backup     
-"if has("vms")  
-"    set nobackup  
-"else  
-"    set backup  
-"endif 
 
 " auto load cscope files
 if has("cscope")
@@ -74,7 +68,7 @@ nmap <C-c> :cs find c <C-R>=expand("<cword>")<CR><CR>
 
 """"""""""""Plugins""""""""""""""
 " Vundle
-filetype off 
+filetype off
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -90,6 +84,7 @@ Plugin 'dkprice/vim-easygrep'
 Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'uguu-org/vim-matrix-screensaver'
+Plugin 'altercation/vim-colors-solarized'
 call vundle#end()
 filetype indent on
 
@@ -98,7 +93,7 @@ nmap <F9> :NERDTreeToggle<CR>
 " set mouse=a
 
 " Tagbar
-nmap <F8> :TagbarToggle<CR>
+nmap <F10> :TagbarToggle<CR>
 
 " vim-scala
 let g:scala_sort_across_groups=1
@@ -118,3 +113,8 @@ let g:ycm_error_symbol='>>'
 let g:ycm_warning_symbol='>*'
 nmap <F4> :YcmDiags<CR>
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" solarized theme
+" set t_Co=256
+" set background=dark
+" colorscheme solarized
