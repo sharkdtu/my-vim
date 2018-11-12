@@ -1,0 +1,20 @@
+alias ls="ls -G"
+alias ll="ls -Gl"
+alias la='ls -Ga'
+
+alias grep='grep --color'
+alias egrep='egrep --color'
+alias fgrep='fgrep --color'
+
+export CLICOLOR=1
+export PS1="[\e[0;35m\u\e[0m@\e[0;32m\h\e[0m \W]\$ "
+
+source $HOME/.git-completion.bash
+
+# Scala
+export SCALA_HOME=$HOME/opt/scala
+export PATH=$SCALA_HOME/bin:$PATH
+
+# Maven
+export M2_HOME=$HOME/opt/maven
+export PATH=$M2_HOME/bin:$PATH
