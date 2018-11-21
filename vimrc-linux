@@ -1,5 +1,4 @@
 set nu
-set nocompatible
 set incsearch
 set hlsearch
 set ruler
@@ -7,9 +6,6 @@ set showmode
 set backspace=indent,eol,start
 set encoding=utf-8
 syntax enable
-
-highlight RedundantSpaces ctermbg=red guibg=red
-match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
 
 " auto indent 2 space
 set autoindent
@@ -35,7 +31,7 @@ imap [] []<ESC>i
 imap <> <><ESC>i
 imap "" ""<ESC>i
 imap '' ''<ESC>i
-imap <F3> <ESC>la
+imap <F1> <ESC>la
 
 " map windows shift
 nmap > <c-w>>
@@ -52,22 +48,12 @@ map <F5> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
 set tags=tags;
 set autochdir
 
-" auto load cscope files
-if has("cscope")
-  set csprg=/usr/bin/cscope
-  set csto=1
-  set cst
-  set nocsverb
-  " add any database in current directory
-  if filereadable("cscope.out")
-      cs add cscope.out
-  endif
-  set csverb
-endif
-nmap <C-c> :cs find c <C-R>=expand("<cword>")<CR><CR>
+highlight RedundantSpaces ctermbg=red guibg=red
+match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
 
 """"""""""""Plugins""""""""""""""
 " Vundle
+set nocompatible
 filetype off
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -80,8 +66,6 @@ Plugin 'bling/vim-airline'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'dkprice/vim-easygrep'
-Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'uguu-org/vim-matrix-screensaver'
 Plugin 'altercation/vim-colors-solarized'
@@ -105,7 +89,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 " ycm
 let mapleader=','
-let g:ycm_show_diagnostics_ui=0
+let g:ycm_show_diagnostics_ui=1
 let g:ycm_key_list_select_completion=[]
 let g:ycm_key_list_previous_completion=[]
 let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
